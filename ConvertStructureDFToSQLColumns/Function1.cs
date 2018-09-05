@@ -18,6 +18,7 @@ namespace ConvertStructureDFToSQLColumns
         private const string TypeDecimal = "Decimal";
         private const string TypeDateTime = "DateTime";
         private const string TypeInt64 = "Int64";
+        private const string TypeSingle = "Single";
 
         [FunctionName("Convert")]
         public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequest req, TraceWriter log)
@@ -61,6 +62,8 @@ namespace ConvertStructureDFToSQLColumns
                     return " datetime";
                 case TypeInt64:
                     return " [bigint] NULL";
+                case TypeSingle:
+                    return " [float] NULL";
                 default:
                     return null;
             }
